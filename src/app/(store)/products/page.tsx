@@ -14,7 +14,7 @@ export default function ProductsPage() {
       {/* Categories Grid*/}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
         {categories.map((category) => (
-          <Link key={category.slug} href="/products" className='group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-5px] border-b-4 relative transition-all' style={{borderColor: category.color }}>            
+          <Link key={category.slug} href={`/products/${category.slug}`} className='group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-5px] border-b-4 relative transition-all' style={{borderColor: category.color }}>            
             <div className='h-48 relative overflow-hidden bg-gray-100'>
               <Image 
                 src={getCategoryImage(category.slug)}
