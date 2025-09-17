@@ -11,12 +11,17 @@ export default function ProductsPage() {
   }
   return (
     <div className='max-w-7xl mx-auto px-4 pt-24 mb-16'>
+      <div className='border-b border-gray-200 mb-12 pb-6'>
+        <Link href="/" className='inline-flex items-center text-[#00798c] hover:text-[#003d5b] font-medium transition-colors'>
+          <i className='bx bx-arrow-back mr-2'></i> Back to Home
+        </Link>
+      </div>
       {/* Categories Grid*/}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
         {categories.map((category) => (
-          <Link key={category.slug} href={`/products/${category.slug}`} className='group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-5px] border-b-4 relative transition-all' style={{borderColor: category.color }}>            
+          <Link key={category.slug} href={`/products/${category.slug}`} className='group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-5px] border-b-4 relative transition-all' style={{ borderColor: category.color }}>
             <div className='h-48 relative overflow-hidden bg-gray-100'>
-              <Image 
+              <Image
                 src={getCategoryImage(category.slug)}
                 alt={category.name}
                 fill
@@ -26,9 +31,9 @@ export default function ProductsPage() {
               <div className='absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent'></div>
             </div>
             <div className='p-6'>
-              <h3 className='text-xl font-bold mb-2 text-[#003d5b] group-hover:text-[#00798c] transition-colors' style={{color: category.color}}>{category.name}</h3>
+              <h3 className='text-xl font-bold mb-2 text-[#003d5b] group-hover:text-[#00798c] transition-colors' style={{ color: category.color }}>{category.name}</h3>
               <p className='text-sm text-[#30638e] mb-4'>{category.description}</p>
-              <div className='flex justify-end items-center text-sm font-medium transition-colors' style={{color: category.color}}>
+              <div className='flex justify-end items-center text-sm font-medium transition-colors' style={{ color: category.color }}>
                 <span className='mr-1'>View Products</span>
                 <i className='bx bx-chevron-right text-xl transform group-hover:translate-x-1 transition-transform'></i>
               </div>
@@ -36,11 +41,7 @@ export default function ProductsPage() {
           </Link>
         ))}
       </div>
-      <div className='mt-12 pt-6 border-t border-gray-200'>
-        <Link href="/" className='inline-flex items-center text-[#00798c] hover:text-[#003d5b] font-medium transition-colors'>
-          <i className='bx bx-arrow-back mr-2'></i> Back to Home
-        </Link>
-      </div>
+
     </div>
   );
 }
