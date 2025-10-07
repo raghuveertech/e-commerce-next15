@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 import Image from 'next/image';
+import { useState } from 'react';
+
 
 export default function HomePage() {
   return (

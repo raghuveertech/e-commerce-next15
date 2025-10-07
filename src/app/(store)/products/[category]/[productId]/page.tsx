@@ -9,7 +9,7 @@ const ProductDetails = (props: { params: Promise<{ category: string, productId: 
 
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
-  const [quantity, setQuantity] = useState<number>(2);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const incrementQuantity = () => {
     setQuantity((prevQuantity) => {

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import "./globals.css";
 import 'boxicons/css/boxicons.min.css';
+import CartContextProvider from "./CartContextProvider";
 
-const promptFont =  Prompt({
+const promptFont = Prompt({
   subsets: ["latin"],
   variable: "--font-prompt",
   display: "swap",
@@ -22,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={promptFont.className}>
-      <body className="antialiased min-h-screen flex flex-col m-0 p-0">{children}</body>
+      <body className="antialiased min-h-screen flex flex-col m-0 p-0">
+        <CartContextProvider>
+          {children}
+        </CartContextProvider>
+      </body>
     </html>
   );
 }

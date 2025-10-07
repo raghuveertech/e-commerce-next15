@@ -1,6 +1,19 @@
+'use client';
+
 import Link from 'next/link';
+import { useContext } from 'react';
+import { CartContext } from '../CartContextProvider';
 
 const Navigation = () => {
+
+  const { cart } = useContext(CartContext);
+
+  let totalQty = 0;
+
+  cart.forEach((item: any) => {
+    totalQty = totalQty + item.qty
+  });
+
   return (
     <nav className='fixed top-0 left-0 right-0 bg-[#003d5d] shadow-md py-4 z-50'>
       <div className='max-w-7xl mx-auto px-4'>
@@ -43,9 +56,10 @@ const Navigation = () => {
             </div>
             <Link
               href='/cart'
-              className='text-white/90 flex justify-center items-center hover:text-[#edae49] p-2 rounded-full hover:bg-white/10 transition-colors'
+              className='text-white/90 flex justify-center items-center hover:text-[#edae49] p-2 rounded-full hover:bg-white/10 transition-colors relative'
             >
               <i className='bx bx-cart text-2xl'></i>
+              <span className='cart-count absolute top-0 right-0'>{totalQty}</span>
             </Link>
             <Link
               href='/login'

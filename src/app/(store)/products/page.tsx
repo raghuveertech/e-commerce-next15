@@ -10,7 +10,7 @@ export default function ProductsPage() {
     return firstProduct?.image || '/images/placeholder.png';
   }
   return (
-    <div className='max-w-7xl mx-auto px-4 pt-24 mb-16'>
+    <div className='max-w-7xl mx-auto px-4 pt-12 mb-16'>
       <div className='border-b border-gray-200 mb-12 pb-6'>
         <Link href="/" className='inline-flex items-center text-[#00798c] hover:text-[#003d5b] font-medium transition-colors'>
           <i className='bx bx-arrow-back mr-2'></i> Back to Home
