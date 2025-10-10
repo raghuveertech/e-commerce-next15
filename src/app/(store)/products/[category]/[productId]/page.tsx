@@ -1,11 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Category, Product, productsList, categories } from '@/app/data/products';
+import { CartContext } from '@/app/CartContextProvider';
+import { useRouter } from 'next/navigation';
 
 const ProductDetails = (props: { params: Promise<{ category: string, productId: string }> }) => {
+
+  const { cart, setCart } = useContext(CartContext);
+  const router = useRouter();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
@@ -45,6 +50,40 @@ const ProductDetails = (props: { params: Promise<{ category: string, productId: 
   }, [props.params]);
 
   const categoryColor = category ? category.color : '#ccc';
+
+  const addItemToCart = () => {
+
+
+    let modifiedCart = [...cart];
+    if (product && category) {
+      let itemExists = modifiedCart.find((item) => {
+        return item.productId === product.id;
+      });
+      if (itemExists) {
+        modifiedCart = modifiedCart.map((item: any) => {
+          if (item.productId === product.id) {
+            item.qty = item.qty + quantity
+          }
+          return item;
+        });
+      } else {
+        modifiedCart.push({
+          productId: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          category: category.slug,
+          qty: quantity
+        });
+      }
+    }
+
+    setCart(modifiedCart);
+
+    router.push('/cart');
+
+  }
+
 
   return (
     <div className='max-w-7xl mx-auto px-4 py-12'>
@@ -89,7 +128,7 @@ const ProductDetails = (props: { params: Promise<{ category: string, productId: 
             </div>
           </div>
           <div className='flex flex-col sm:flex-row gap-4'>
-            <button className='flex-1 px-8 py-3 rounded-full flex items-center justify-center font-medium text-white cursor-pointer transition-colors' style={{ backgroundColor: categoryColor }}>
+            <button className='flex-1 px-8 py-3 rounded-full flex items-center justify-center font-medium text-white cursor-pointer transition-colors' style={{ backgroundColor: categoryColor }} onClick={addItemToCart}>
               <i className='bx bx-cart text-2xl mr-2'></i>
               Add to Cart
             </button>

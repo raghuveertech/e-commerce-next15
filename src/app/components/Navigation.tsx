@@ -1,18 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../CartContextProvider';
 
 const Navigation = () => {
 
   const { cart } = useContext(CartContext);
 
-  let totalQty = 0;
+  const [totalQty, setTotalQty] = useState(0);
 
-  cart.forEach((item: any) => {
-    totalQty = totalQty + item.qty
-  });
+  useEffect(() => {
+    cart.forEach((item: any) => {
+      setTotalQty(totalQty + item.qty)
+    });
+  }, []);
 
   return (
     <nav className='fixed top-0 left-0 right-0 bg-[#003d5d] shadow-md py-4 z-50'>
