@@ -37,7 +37,7 @@ const CartPage = () => {
       <div className='cart-list'>
         {
           cart.map((item: any) => {
-            return <div className='cart-item'>
+            return <div className='cart-item' key={item.productId}>
               <div className='product-image'>
                 <Link href={`/products/${item.category}/${item.productId}`}>
                   <Image src={item.image ? item.image : '/images/placeholder.png'} alt={item.name} width={200} height={100} />

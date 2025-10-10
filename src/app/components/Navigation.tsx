@@ -11,10 +11,12 @@ const Navigation = () => {
   const [totalQty, setTotalQty] = useState(0);
 
   useEffect(() => {
+    let total = 0;
     cart.forEach((item: any) => {
-      setTotalQty(totalQty + item.qty)
+      total += item.qty;
     });
-  }, []);
+    setTotalQty(total);
+  }, [cart]);
 
   return (
     <nav className='fixed top-0 left-0 right-0 bg-[#003d5d] shadow-md py-4 z-50'>
